@@ -45,4 +45,12 @@ public class Panel extends JPanel implements Runnable {
             repaint();
         }
     }
+
+    @Override
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        for (Shape shape : shapes) {
+            shape.paint(g);
+        }
+    }
 }

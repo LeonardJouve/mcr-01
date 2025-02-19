@@ -26,7 +26,7 @@ public class Position {
         this.y = y;
     }
 
-    public static Position getRandom(Dimension dimension) {
-        return new Position(RANDOM.nextInt(dimension.width()), RANDOM.nextInt(dimension.height()));
+    public static Position getRandom(Dimension dimension, int size) {
+        return new Position(RANDOM.nextInt(dimension.width() - size), RANDOM.nextInt(dimension.height() - size));
     }
 }

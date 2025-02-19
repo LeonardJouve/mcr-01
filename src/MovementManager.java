@@ -5,9 +5,9 @@ public class MovementManager implements Movable {
         this.dimension = dimension;
     }
 
-    public void move(Position position, Vector vector) {
-        if (isOutboundVertical(position)) bounceVertical(vector);
-        if (isOutboundHorizontal(position)) bounceHorizontal(vector);
+    public void move(Position position, Vector vector, int size) {
+        if (isOutboundVertical(position, size)) bounceVertical(vector);
+        if (isOutboundHorizontal(position, size)) bounceHorizontal(vector);
 
         position.setX(position.getX() + vector.getDx());
         position.setY(position.getY() + vector.getDy());

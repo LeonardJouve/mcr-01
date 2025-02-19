@@ -26,8 +26,8 @@ public class Vector {
     }
 
     public static Vector getRandom(Dimension dimension) {
-        int dx = RANDOM.nextInt(dimension.width()) / 10;
-        int dy = RANDOM.nextInt(dimension.height()) / 10;
+        int dx = (RANDOM.nextInt(2 * dimension.width()) - dimension.width()) / 100;
+        int dy = (RANDOM.nextInt(2 * dimension.height()) - dimension.height()) / 100;
         return new Vector(dx, dy);
     }
 }

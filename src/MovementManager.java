@@ -13,12 +13,12 @@ public class MovementManager implements Movable {
         position.setY(position.getY() + vector.getDy());
     }
 
-    private boolean isOutboundVertical(Position position) {
-        return position.getY() < 0 || position.getY() >= dimension.height();
+    private boolean isOutboundVertical(Position position, int size) {
+        return position.getY() < 0 || position.getY() + size >= dimension.height();
     }
 
-    private boolean isOutboundHorizontal(Position position) {
-        return position.getX() < 0 || position.getX() >= dimension.width();
+    private boolean isOutboundHorizontal(Position position, int size) {
+        return position.getX() < 0 || position.getX() + size >= dimension.width();
     }
 
     private void bounceVertical(Vector vector) {

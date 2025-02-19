@@ -1,12 +1,8 @@
 import java.awt.*;
 
 public class Square extends Shape {
-    private final int size;
-
     public Square(Position position, Vector vector, Movable movementManager, int size) {
-        super(position, vector, movementManager);
-
-        this.size = size;
+        super(position, vector, size, movementManager);
     }
 
     @Override

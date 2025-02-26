@@ -1,5 +1,6 @@
 public class MovementManager implements Movable {
-    private final Dimension dimension;
+    private final int height;
+    private final int width;
 
     public MovementManager(Dimension dimension) {
         this.dimension = dimension;

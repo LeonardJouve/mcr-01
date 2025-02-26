@@ -8,6 +8,7 @@ public class Main {
     private static final int FPS = 60;
     private static final int MIN_SIZE = 10;
     private static final int MAX_SIZE = 50;
+    private static final int SHAPE_COUNT = 100;
     private static final Random RANDOM = new Random();
 
     public static void main(String[] args) {
@@ -34,7 +35,7 @@ public class Main {
         panel.setPreferredSize(new java.awt.Dimension(dimension.width(), dimension.height()));
         Movable movementManager = new MovementManager(dimension);
 
-        while (shapes.size() < 40) {
+        while (shapes.size() < SHAPE_COUNT) {
             int size = RANDOM.nextInt(MAX_SIZE - MIN_SIZE + 1) + MIN_SIZE;
             Position position = Position.getRandom(dimension, size);
             Vector vector = Vector.getRandom(dimension);

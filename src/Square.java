@@ -5,8 +5,7 @@ public class Square extends Shape {
         super(position, vector, size, movementManager);
     }
 
-    @Override
-    public void paint(Graphics g) {
+    public void draw(Graphics2D g) {
         g.setColor(Color.BLUE);
         g.fillRect(position.getX(), position.getY(), size, size);
     }

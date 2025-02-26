@@ -5,8 +5,7 @@ public class Circle extends Shape {
         super(position, vector, size, movable);
     }
 
-    @Override
-    public void paint(Graphics g) {
+    public void draw(Graphics2D g) {
         g.setColor(Color.RED);
         g.fillOval(position.getX(), position.getY(), size, size);
     }

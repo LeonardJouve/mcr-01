@@ -1,6 +1,7 @@
 import javax.swing.*;
+import java.awt.*;
 
-public abstract class Shape extends JComponent {
+public abstract class Shape {
     protected final Position position;
     protected final int size;
     private final Vector vector;
@@ -16,4 +17,6 @@ public abstract class Shape extends JComponent {
     public void move() {
         movable.move(position, vector, size);
     }
+
+    public abstract void draw(Graphics2D graphics);
 }

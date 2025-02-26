@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -44,7 +45,7 @@ public class Main {
             displayer.repaint();
             for (Shape shape : shapes) {
                 shape.move();
-                shape.paint(displayer.getGraphics());
+                shape.draw(displayer.getGraphics());
             }
         }
     }

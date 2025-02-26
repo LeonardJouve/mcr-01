@@ -9,6 +9,46 @@ public class Main {
     private static final int SHAPE_COUNT = 100;
     private static final Random RANDOM = new Random();
 
+    private final List<Shape> shapes;
+    private final Displayer displayer;
+
+    public Main() {
+        shapes = new ArrayList<>();
+        displayer = DisplayerBouncer.getInstance();
+        displayer.setTitle("MCR Labo 1");
+
+        Movable movementManager = new MovementManager(displayer.getWidth(), displayer.getHeight());
+        while (shapes.size() < SHAPE_COUNT) {
+            int size = RANDOM.nextInt(MAX_SHAPE_SIZE - MIN_SHAPE_SIZE + 1) + MIN_SHAPE_SIZE;
+            Position position = Position.getRandom(displayer.getWidth(), displayer.getHeight(), size);
+            Vector vector = Vector.getRandom(displayer.getWidth(), displayer.getHeight());
+
+            Shape shape;
+            if (RANDOM.nextInt() % 2 == 0) {
+                shape = new Circle(position, vector, movementManager, size);
+            } else {
+                shape = new Square(position, vector, movementManager, size);
+            }
+
+            shapes.add(shape);
+        }
+    }
+
+    public void run() {
+        while (true) {
+            try {
+                Thread.sleep(1000 / FPS);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            displayer.repaint();
+            for (Shape shape : shapes) {
+                shape.move();
+                shape.paint(displayer.getGraphics());
+            }
+        }
+    }
+
     public static void main(String[] args) {
         new Main().run();
     }

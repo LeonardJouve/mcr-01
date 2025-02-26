@@ -2,8 +2,9 @@ public class MovementManager implements Movable {
     private final int height;
     private final int width;
 
-    public MovementManager(Dimension dimension) {
-        this.dimension = dimension;
+    public MovementManager(int width, int height) {
+        this.width = width;
+        this.height = height;
     }
 
     public void move(Position position, Vector vector, int size) {
@@ -15,11 +16,11 @@ public class MovementManager implements Movable {
     }
 
     private boolean isOutboundVertical(Position position, int size) {
-        return position.getY() < 0 || position.getY() + size >= dimension.height();
+        return position.getY() < 0 || position.getY() + size >= height;
     }
 
     private boolean isOutboundHorizontal(Position position, int size) {
-        return position.getX() < 0 || position.getX() + size >= dimension.width();
+        return position.getX() < 0 || position.getX() + size >= width;
     }
 
     private void bounceVertical(Vector vector) {

@@ -1,7 +1,7 @@
 import java.awt.event.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Queue;
 import java.util.Random;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class Main {
     private static final int FPS = 60;
@@ -9,12 +9,12 @@ public class Main {
     private static final int MAX_SHAPE_SIZE = 50;
     private static final Random RANDOM = new Random();
 
-    private final List<Bouncable> shapes;
+    private final Queue<Bouncable> shapes;
     private final Displayer displayer;
     private final Movable movementManager;
 
     private interface Generator {
-        Bouncable generate(Position position, Vector vector, Movable movable, int size);
+        Bouncable generate(Position position, Vector vector, Movable movable, int size, Displayer displayer);
     }
 
     private Bouncable generateRandBouncable(Generator generator) {
@@ -22,11 +22,11 @@ public class Main {
         Position position = Position.getRandom(displayer.getWidth(), displayer.getHeight(), size);
         Vector vector = Vector.getRandom(displayer.getWidth(), displayer.getHeight());
 
-        return generator.generate(position, vector, movementManager, size);
+        return generator.generate(position, vector, movementManager, size, displayer);
     }
 
     public Main() {
-        shapes = new ArrayList<>();
+        shapes = new ConcurrentLinkedQueue<>();
         displayer = DisplayerBouncer.getInstance();
         displayer.setTitle("MCR Labo 1");
 
@@ -53,8 +53,6 @@ public class Main {
                     case KeyEvent.VK_Q:
                         System.exit(0);
                         break;
-                    default:
-                        System.out.println("Invalid key");
                 }
             }
         });
@@ -68,6 +66,8 @@ public class Main {
                 throw new RuntimeException(e);
             }
             displayer.repaint();
+            movementManager.setWidth(displayer.getWidth());
+            movementManager.setHeight(displayer.getHeight());
             for (Bouncable bouncable : shapes) {
                 bouncable.move();
                 bouncable.draw();

@@ -12,12 +12,12 @@ public class StrokedFactory implements ShapeFactory {
     }
 
     @Override
-    public Circle createCircle(Position position, Vector vector, Movable movable, int size) {
-        return new StrokedCircle(position, vector, movable, size);
+    public Circle createCircle(Position position, Vector vector, Movable movable, int size, Displayer displayer) {
+        return new StrokedCircle(position, vector, movable, size, displayer);
     }
 
     @Override
-    public Square createSquare(Position position, Vector vector, Movable movable, int size) {
-        return new StrokedSquare(position, vector, movable, size);
+    public Square createSquare(Position position, Vector vector, Movable movable, int size, Displayer displayer) {
+        return new StrokedSquare(position, vector, movable, size, displayer);
     }
 }

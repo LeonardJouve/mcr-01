@@ -2,11 +2,9 @@ import java.awt.*;
 import java.awt.geom.Rectangle2D;
 
 public abstract class Square extends BouncableShape {
-    public Square(Position position, Vector vector, Movable movementManager, int size, Color color) {
-        super(position, vector, size, movementManager, color);
+    public Square(Position position, Vector vector, Movable movementManager, Renderer renderer, int size, Color color, Displayer displayer) {
+        super(position, vector, size, movementManager, renderer, color, displayer);
     }
-
-    public abstract void draw();
 
     @Override
     public Shape getShape() {

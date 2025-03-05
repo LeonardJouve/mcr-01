@@ -1,6 +1,8 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ComponentAdapter;
 import java.awt.event.KeyAdapter;
+import java.awt.image.BufferedImage;
 
 public class DisplayerBouncer implements Displayer {
     private static final int WIDTH = 800;
@@ -21,9 +23,16 @@ public class DisplayerBouncer implements Displayer {
         frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(WIDTH, HEIGHT);
-        frame.setResizable(false);
+        frame.setResizable(true);
 
         panel = new JPanel();
+        im = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
+        panel.addComponentListener(new ComponentAdapter() {
+            public void componentResized(java.awt.event.ComponentEvent evt) {
+                if (getWidth() <= 0 || getHeight() <= 0) return;
+                im = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
+            }
+        });
 
         panel.setPreferredSize(new Dimension(WIDTH, HEIGHT));
 
@@ -42,14 +51,22 @@ public class DisplayerBouncer implements Displayer {
         return panel.getSize().height;
     }
 
+    private Image im;
+
     @Override
     public Graphics2D getGraphics() {
-        return (Graphics2D) panel.getGraphics();
+        return (Graphics2D) im.getGraphics();
     }
 
     @Override
     public void repaint() {
-        panel.repaint();
+        //panel.repaint();
+        //panel.getGraphics().clearRect(0, 0, panel.getWidth(), panel.getHeight());
+        panel.getGraphics().drawImage(im, 0, 0, panel);
+        im.flush();
+
+        getGraphics().setColor(Color.WHITE);
+        getGraphics().fillRect(0, 0, getWidth(), getHeight());
     }
 
     @Override

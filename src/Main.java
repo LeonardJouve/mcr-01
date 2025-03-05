@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -18,7 +19,7 @@ public class Main {
         displayer.setTitle("MCR Labo 1");
 
         Movable movementManager = new MovementManager(displayer.getWidth(), displayer.getHeight());
-        while (shapes.size() < SHAPE_COUNT) {
+        for (int i = 0; i < SHAPE_COUNT; ++i) {
             int size = RANDOM.nextInt(MAX_SHAPE_SIZE - MIN_SHAPE_SIZE + 1) + MIN_SHAPE_SIZE;
             Position position = Position.getRandom(displayer.getWidth(), displayer.getHeight(), size);
             Vector vector = Vector.getRandom(displayer.getWidth(), displayer.getHeight());
@@ -35,6 +36,7 @@ public class Main {
     }
 
     public void run() {
+        Graphics2D graphics = displayer.getGraphics();
         while (true) {
             try {
                 Thread.sleep(1000 / FPS);
@@ -44,7 +46,7 @@ public class Main {
             displayer.repaint();
             for (Shape shape : shapes) {
                 shape.move();
-                shape.draw(displayer.getGraphics());
+                shape.draw(graphics);
             }
         }
     }

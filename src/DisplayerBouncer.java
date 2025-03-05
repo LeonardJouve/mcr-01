@@ -26,19 +26,20 @@ public class DisplayerBouncer implements Displayer {
 
         panel.setPreferredSize(new Dimension(WIDTH, HEIGHT));
 
-        frame.add(panel, BorderLayout.CENTER);
+        frame.setContentPane(panel);
+        //frame.add(panel, BorderLayout.CENTER);
         frame.pack();
         frame.setVisible(true);
     }
 
     @Override
     public int getWidth() {
-        return WIDTH;
+        return panel.getSize().width;
     }
 
     @Override
     public int getHeight() {
-        return HEIGHT;
+        return panel.getSize().height;
     }
 
     @Override
@@ -48,7 +49,8 @@ public class DisplayerBouncer implements Displayer {
 
     @Override
     public void repaint() {
-        panel.repaint();
+        //panel.repaint();
+        getGraphics().clearRect(0, 0, getWidth(), getHeight());
     }
 
     @Override

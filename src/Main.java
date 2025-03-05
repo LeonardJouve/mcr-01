@@ -8,6 +8,7 @@ public class Main {
     private static final int MIN_SHAPE_SIZE = 10;
     private static final int MAX_SHAPE_SIZE = 50;
     private static final Random RANDOM = new Random();
+    private static final int SHAPE_GENERATION_COUNT = 10;
 
     private final Queue<Bouncable> shapes;
     private final Displayer displayer;
@@ -39,13 +40,13 @@ public class Main {
                         shapes.clear();
                         break;
                     case KeyEvent.VK_F:
-                        for (int i = 0; i < 10; ++i) {
+                        for (int i = 0; i < SHAPE_GENERATION_COUNT; ++i) {
                             shapes.add(generateRandBouncable(FilledFactory.getInstance()::createSquare));
                             shapes.add(generateRandBouncable(FilledFactory.getInstance()::createCircle));
                         }
                         break;
                     case KeyEvent.VK_B:
-                        for (int i = 0; i < 10; ++i) {
+                        for (int i = 0; i < SHAPE_GENERATION_COUNT; ++i) {
                             shapes.add(generateRandBouncable(StrokedFactory.getInstance()::createSquare));
                             shapes.add(generateRandBouncable(StrokedFactory.getInstance()::createCircle));
                         }

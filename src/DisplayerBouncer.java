@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
 
 public class DisplayerBouncer implements Displayer {
     private static final int WIDTH = 800;
@@ -27,7 +28,6 @@ public class DisplayerBouncer implements Displayer {
         panel.setPreferredSize(new Dimension(WIDTH, HEIGHT));
 
         frame.setContentPane(panel);
-        //frame.add(panel, BorderLayout.CENTER);
         frame.pack();
         frame.setVisible(true);
     }
@@ -49,12 +49,16 @@ public class DisplayerBouncer implements Displayer {
 
     @Override
     public void repaint() {
-        //panel.repaint();
-        getGraphics().clearRect(0, 0, getWidth(), getHeight());
+        panel.repaint();
     }
 
     @Override
     public void setTitle(String title) {
         frame.setTitle(title);
+    }
+
+    @Override
+    public void addKeyListener(KeyAdapter keyAdapter) {
+        frame.addKeyListener(keyAdapter);
     }
 }

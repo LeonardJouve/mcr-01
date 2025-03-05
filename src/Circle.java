@@ -1,12 +1,14 @@
 import java.awt.*;
+import java.awt.geom.Ellipse2D;
 
-public class Circle extends Shape {
-    public Circle(Position position, Vector vector, Movable movable, int size) {
-        super(position, vector, size, movable);
+public abstract class Circle extends BouncableShape {
+    public Circle(Position position, Vector vector, Movable movable, int size, Color color) {
+        super(position, vector, size, movable, color);
     }
 
-    public void draw(Graphics2D g) {
-        g.setColor(Color.RED);
-        g.fillOval(position.getX(), position.getY(), size, size);
+    public abstract void draw();
+
+    public Shape getShape() {
+        return new Ellipse2D.Double(position.getX(), position.getY(), size, size);
     }
 }

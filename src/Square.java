@@ -1,12 +1,15 @@
 import java.awt.*;
+import java.awt.geom.Rectangle2D;
 
-public class Square extends Shape {
-    public Square(Position position, Vector vector, Movable movementManager, int size) {
-        super(position, vector, size, movementManager);
+public abstract class Square extends BouncableShape {
+    public Square(Position position, Vector vector, Movable movementManager, int size, Color color) {
+        super(position, vector, size, movementManager, color);
     }
 
-    public void draw(Graphics2D g) {
-        g.setColor(Color.BLUE);
-        g.fillRect(position.getX(), position.getY(), size, size);
+    public abstract void draw();
+
+    @Override
+    public Shape getShape() {
+        return new Rectangle2D.Double(position.getX(), position.getY(), size, size);
     }
 }

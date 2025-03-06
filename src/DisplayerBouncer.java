@@ -60,8 +60,6 @@ public class DisplayerBouncer implements Displayer {
 
     @Override
     public void repaint() {
-        //panel.repaint();
-        //panel.getGraphics().clearRect(0, 0, panel.getWidth(), panel.getHeight());
         panel.getGraphics().drawImage(im, 0, 0, panel);
         im.flush();
 

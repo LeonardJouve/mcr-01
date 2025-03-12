@@ -1,0 +1,230 @@
+@startuml
+skinparam classAttributeIconSize 0
+skinparam classFontSize 12
+skinparam classAttributeFontSize 11
+skinparam classMethodFontSize 11
+
+' Interfaces
+interface Bouncable {
+    +void draw()
+    +void move()
+    +Color getColor()
+    +Shape getShape()
+}
+
+interface Displayer {
+    +int getWidth()
+    +int getHeight()
+    +Graphics2D getGraphics()
+    +void repaint()
+    +void setTitle(String)
+    +void addKeyListener(KeyAdapter)
+}
+
+interface Movable {
+    +void move(Position, Vector, int)
+    +void setWidth(int)
+    +void setHeight(int)
+}
+
+interface Renderer {
+    +void display(Graphics2D, Bouncable)
+}
+
+interface ShapeFactory {
+    +Circle createCircle(Position, Vector, Movable, int, Displayer)
+    +Square createSquare(Position, Vector, Movable, int, Displayer)
+}
+
+' Abstract class
+abstract class BouncableShape {
+    #final Position position
+    #final int size
+    -final Vector vector
+    -final Movable movable
+    -final Color color
+    -final Renderer renderer
+    -final Displayer displayer
+
+    +void move()
+    +void draw()
+    +Color getColor()
+    +{abstract} Shape getShape()
+}
+
+' Abstract shape classes
+abstract class Circle {
+    +Shape getShape()
+}
+
+abstract class Square {
+    +Shape getShape()
+}
+
+' Concrete shapes
+class FilledCircle {
+
+}
+
+class StrokedCircle {
+
+}
+
+class FilledSquare {
+
+}
+
+class StrokedSquare {
+
+}
+
+' Renderers
+class BouncableFilledRenderer {
+    -{static} BouncableFilledRenderer instance
+
+    +{static} BouncableFilledRenderer getInstance()
+    +void display(Graphics2D, Bouncable)
+}
+
+class BouncableStrokedRenderer {
+    -{static} BouncableStrokedRenderer instance
+
+    +{static} BouncableStrokedRenderer getInstance()
+    +void display(Graphics2D, Bouncable)
+}
+
+' Factories
+class FilledFactory {
+    -{static} FilledFactory instance
+    -FilledFactory()
+    +{static} FilledFactory getInstance()
+    +Circle createCircle(Position, Vector, Movable, int, Displayer)
+    +Square createSquare(Position, Vector, Movable, int, Displayer)
+}
+
+class StrokedFactory {
+    -{static} StrokedFactory instance
+    -StrokedFactory()
+    +{static} StrokedFactory getInstance()
+    +Circle createCircle(Position, Vector, Movable, int, Displayer)
+    +Square createSquare(Position, Vector, Movable, int, Displayer)
+}
+
+' Displayer Implementation
+class DisplayerBouncer {
+    -{static} final int WIDTH
+    -{static} final int HEIGHT
+    -{static} DisplayerBouncer instance
+    -final JFrame frame
+    -final JPanel panel
+    -Image im
+
+    -DisplayerBouncer()
+    +{static} DisplayerBouncer getInstance()
+    +int getWidth()
+    +int getHeight()
+    +Graphics2D getGraphics()
+    +void repaint()
+    +void setTitle(String)
+    +void addKeyListener(KeyAdapter)
+}
+
+' Movement
+class MovementManager {
+    -int width
+    -int height
+
+
+    +void move(Position, Vector, int)
+    +void setWidth(int)
+    +void setHeight(int)
+    -boolean isOutboundVertical(Position, int)
+    -boolean isOutboundHorizontal(Position, int)
+    -void bounceVertical(Vector)
+    -void bounceHorizontal(Vector)
+}
+
+' Position
+class Position {
+    -int x
+    -int y
+    -{static} final Random RANDOM
+
+
+    +int getX()
+    +int getY()
+    +void setX(int)
+    +void setY(int)
+    +{static} Position getRandom(int, int, int)
+}
+
+' Vector
+class Vector {
+    -int dx
+    -int dy
+    -{static} final Random RANDOM
+
+
+    +int getDx()
+    +int getDy()
+    +void setDx(int)
+    +void setDy(int)
+    +{static} Vector getRandom(int, int)
+}
+
+' Main class
+class Main {
+    -{static} final int FPS
+    -{static} final int MIN_SHAPE_SIZE
+    -{static} final int MAX_SHAPE_SIZE
+    -{static} final int SHAPE_GENERATION_COUNT
+    -{static} final Random RANDOM
+    -Queue<Bouncable> shapes
+    -Displayer displayer
+    -Movable movementManager
+
+    -Bouncable generateRandBouncable(Generator)
+    +void run()
+    +{static} void main(String[])
+}
+
+' Relationships
+Bouncable <|.. BouncableShape
+BouncableShape <|-- Circle
+BouncableShape <|-- Square
+
+Circle <|-- FilledCircle
+Circle <|-- StrokedCircle
+Square <|-- FilledSquare
+Square <|-- StrokedSquare
+
+Renderer <|.. BouncableFilledRenderer
+Renderer <|.. BouncableStrokedRenderer
+
+Renderer <.. BouncableShape
+Movable <.. BouncableShape
+Displayer <.. BouncableShape
+
+ShapeFactory <|.. FilledFactory
+ShapeFactory <|.. StrokedFactory
+
+Displayer <|.. DisplayerBouncer
+Movable <|.. MovementManager
+
+Main --> MovementManager
+Main --> DisplayerBouncer
+Main --> Bouncable
+
+BouncableShape --> Position
+BouncableShape --> Vector
+BouncableShape --> Renderer
+BouncableShape --> Displayer
+BouncableShape --> Movable
+BouncableShape --> Color
+
+FilledFactory <|.. FilledSquare
+FilledFactory <|.. FilledCircle
+
+StrokedFactory <|.. StrokedSquare
+StrokedFactory <|.. StrokedCircle
+@enduml

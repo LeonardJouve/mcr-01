@@ -26,7 +26,6 @@ public class DisplayerBouncer implements Displayer {
         frame.setResizable(true);
 
         panel = new JPanel();
-        im = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
         panel.addComponentListener(new ComponentAdapter() {
             public void componentResized(java.awt.event.ComponentEvent evt) {
                 if (getWidth() <= 0 || getHeight() <= 0) return;

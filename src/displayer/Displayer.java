@@ -1,3 +1,5 @@
+package displayer;
+
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 

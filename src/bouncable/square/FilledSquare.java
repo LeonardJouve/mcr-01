@@ -1,3 +1,11 @@
+package bouncable.square;
+
+import bouncable.renderer.BouncableFilledRenderer;
+import displayer.Displayer;
+import movement.Movable;
+import utils.Position;
+import utils.Vector;
+
 import java.awt.*;
 
 public class FilledSquare extends Square {

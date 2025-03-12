@@ -1,3 +1,13 @@
+package bouncable.factory;
+
+import bouncable.circle.Circle;
+import bouncable.square.Square;
+import bouncable.circle.StrokedCircle;
+import bouncable.square.StrokedSquare;
+import displayer.Displayer;
+import movement.Movable;
+import utils.Position;
+import utils.Vector;
 
 public class StrokedFactory implements ShapeFactory {
     private static StrokedFactory instance;

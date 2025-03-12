@@ -1,3 +1,11 @@
+package bouncable;
+
+import bouncable.renderer.Renderer;
+import displayer.Displayer;
+import movement.Movable;
+import utils.Position;
+import utils.Vector;
+
 import java.awt.*;
 
 public abstract class BouncableShape implements Bouncable {

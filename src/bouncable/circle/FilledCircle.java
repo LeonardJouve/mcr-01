@@ -1,3 +1,11 @@
+package bouncable.circle;
+
+import bouncable.renderer.BouncableFilledRenderer;
+import displayer.Displayer;
+import movement.Movable;
+import utils.Position;
+import utils.Vector;
+
 import java.awt.*;
 
 public class FilledCircle extends Circle {

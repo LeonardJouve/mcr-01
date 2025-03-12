@@ -1,3 +1,13 @@
+import bouncable.Bouncable;
+import bouncable.factory.FilledFactory;
+import bouncable.factory.StrokedFactory;
+import displayer.Displayer;
+import displayer.DisplayerBouncer;
+import movement.Movable;
+import movement.MovementManager;
+import utils.Position;
+import utils.Vector;
+
 import java.awt.event.*;
 import java.util.Queue;
 import java.util.Random;

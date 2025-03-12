@@ -1,6 +1,10 @@
+package bouncable.renderer;
+
+import bouncable.Bouncable;
+
 import java.awt.*;
 
-class BouncableFilledRenderer implements Renderer {
+public class BouncableFilledRenderer implements Renderer {
 
     private static BouncableFilledRenderer instance;
 

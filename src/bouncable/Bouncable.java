@@ -1,3 +1,5 @@
+package bouncable;
+
 import java.awt.*;
 
 public interface Bouncable {

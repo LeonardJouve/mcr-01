@@ -1,3 +1,7 @@
+package bouncable.renderer;
+
+import bouncable.Bouncable;
+
 import java.awt.*;
 
 public class BouncableStrokedRenderer implements Renderer {

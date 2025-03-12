@@ -1,3 +1,12 @@
+package bouncable.square;
+
+import bouncable.BouncableShape;
+import bouncable.renderer.Renderer;
+import displayer.Displayer;
+import movement.Movable;
+import utils.Position;
+import utils.Vector;
+
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 

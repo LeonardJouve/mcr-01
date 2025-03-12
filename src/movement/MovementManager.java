@@ -1,3 +1,8 @@
+package movement;
+
+import utils.Position;
+import utils.Vector;
+
 public class MovementManager implements Movable {
     private int height;
     private int width;

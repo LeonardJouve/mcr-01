@@ -1,3 +1,14 @@
+package bouncable.factory;
+
+import bouncable.circle.Circle;
+import bouncable.circle.FilledCircle;
+import bouncable.square.FilledSquare;
+import bouncable.square.Square;
+import displayer.Displayer;
+import movement.Movable;
+import utils.Position;
+import utils.Vector;
+
 public class FilledFactory implements ShapeFactory {
     private static FilledFactory instance;
 
